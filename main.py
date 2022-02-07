@@ -30,10 +30,7 @@ while len(already_guessed) < 50:
                                     prompt="What's the name of another state").title()
     if answer_state == "Exit":
         # states that weren't guessed before exit
-        missing_states = []
-        for state in state_list:
-            if state not in already_guessed:
-                missing_states.append(state)
+        missing_states = [state for state in state_list if state not in already_guessed]
         new_data = pandas.DataFrame(missing_states)
         new_data.to_csv("states_to_learn.csv")
         break
